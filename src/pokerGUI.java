@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class pokerGUI implements ActionListener {
+public class pokerGUI {
 	JFrame frame;
 	JPanel panel;
 	JLabel name1,name2,winner;
