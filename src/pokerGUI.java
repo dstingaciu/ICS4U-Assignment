@@ -23,7 +23,6 @@ public class pokerGUI {
 		panel.setBorder(BorderFactory.createEmptyBorder(100,100,100,100));
 		
 		
-		
 		frame.setContentPane(panel);
 		frame.pack();
 		frame.setVisible(true);
@@ -36,23 +35,28 @@ public class pokerGUI {
 		name2=new JLabel(p2Name);
 		panel.add(name2);
 		for(int i=5;i<10;i++){
-			hand2[i]=new JLabel(new ImageIcon(filenames[i]));
-			panel.add(hand2[i]);
+			//hand2[i]=new JLabel(new ImageIcon(filenames[i]));	
+			panel.add(new JLabel(new ImageIcon(filenames[i])));
+			panel.revalidate();
 		}
 	}
 	public void displayHand1(String[]filenames,String p1Name){
 		name1=new JLabel(p1Name);
 		panel.add(name1);
 		for(int i=0;i<5;i++){
-			hand1[i]=new JLabel(new ImageIcon(filenames[i]));
-			panel.add(hand1[i]);
+			System.out.println(filenames[i]);
+			//hand1[i]=new JLabel(new ImageIcon(filenames[i]));
+			panel.add(new JLabel(new ImageIcon(filenames[i])));
+			panel.revalidate();
 		}
 	}
 	public void empty(){
 		for(int i=0;i<5;i++){
 		panel.add(new JLabel());
 		}
-		backcard=new JLabel(new ImageIcon("redback.png"));
+		//backcard=new JLabel(new ImageIcon("redback.png"));
+		panel.add(new JLabel(new ImageIcon("redback.png")));
+		panel.revalidate();
 	}
 	
 	public void shuffleIt(){
