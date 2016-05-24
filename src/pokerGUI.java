@@ -8,45 +8,60 @@ public class pokerGUI {
 	JFrame frame;
 	JPanel panel;
 	JLabel name1,name2,winner,backcard,shuffling;
-	JLabel[] hand1;
-	JLabel[] hand2;
+	JLabel[] hand1=new JLabel[5];
+	JLabel[] hand2=new JLabel[5];
 	JButton shuffleB;
 	int n=1;
 	static String n1,n2;
+	public boolean shuff=false;
 	
 	public pokerGUI(){
 		
 		
 		frame=new JFrame("Poker");
+		
 		panel=new JPanel();
 		panel.setLayout(new GridLayout(0,6,20,20));
 		panel.setBorder(BorderFactory.createEmptyBorder(100,100,100,100));
 		
 		
+		
 		frame.setContentPane(panel);
 		frame.pack();
 		frame.setVisible(true);
+		frame.setSize(1000, 750);
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void firstTime1(){
+		name1=new JLabel("Player 1");
+		panel.add(name1);
+		for(int i = 0; i < 5; i++) hand1[i] = new JLabel();
+		for(int i=0;i<5;i++){
+		panel.add(hand1[i]);
+		}
+	}
+	public void firstTime2(){
+		name2=new JLabel("Player 2");
+		panel.add(name2);
+		for(int i = 0; i < 5; i++) hand2[i] = new JLabel();
+		for(int i=0;i<5;i++){
+		panel.add(hand2[i]);
+		}
 	}
 	
 
 	//Output cards based on file names array
-	public void displayHand2(String []filenames,String p2Name){
-		name2=new JLabel(p2Name);
-		panel.add(name2);
-		for(int i=5;i<10;i++){
-			//hand2[i]=new JLabel(new ImageIcon(filenames[i]));	
-			panel.add(new JLabel(new ImageIcon(filenames[i])));
+	public void displayHand2(String []filenames){
+		for(int i=0;i<5;i++){
+			hand2[i].setIcon(new ImageIcon(filenames[i+5]));	
 			panel.revalidate();
 		}
 	}
-	public void displayHand1(String[]filenames,String p1Name){
-		name1=new JLabel(p1Name);
-		panel.add(name1);
-		for(int i=0;i<5;i++){
-			System.out.println(filenames[i]);
-			//hand1[i]=new JLabel(new ImageIcon(filenames[i]));
-			panel.add(new JLabel(new ImageIcon(filenames[i])));
+	public void displayHand1(String[]filenames){
+		for(int i=0;i<5;i++){			
+			hand1[i].setIcon(new ImageIcon(filenames[i]));
 			panel.revalidate();
 		}
 	}
@@ -54,24 +69,33 @@ public class pokerGUI {
 		for(int i=0;i<5;i++){
 		panel.add(new JLabel());
 		}
-		//backcard=new JLabel(new ImageIcon("redback.png"));
 		panel.add(new JLabel(new ImageIcon("redback.png")));
 		panel.revalidate();
 	}
 	
 	public void shuffleIt(){
-		shuffleB=new JButton("Re-Shuffle");
+		shuffleB=new JButton("Re-Shuffle");		
 		shuffleB.setActionCommand("False");
 		shuffleB.addActionListener(new shuffle());
+		panel.add(shuffleB);
+		shuffleB.setSize(250,50);
+	}
+	
+	public boolean returnShuff(){
+		return shuff;
+	}
+	public void setShuff(boolean a){
+		shuff=a;
 	}
 	
 	public void displayBack(){
 		for(int i=0;i<5;i++){
 			hand1[i].setIcon(new ImageIcon("redback.png"));
 		}
-		for(int i=5;i<10;i++){
+		for(int i=0;i<5;i++){
 			hand2[i].setIcon(new ImageIcon("redback.png"));
 		}
+		shuff=true;
 		panel.repaint();
 		panel.revalidate();
 	}

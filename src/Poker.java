@@ -15,16 +15,27 @@ public class Poker {
 			getName(hands1, hands2, suits); 
 			
 			pokerGUI pg=new pokerGUI();
-			pg.displayHand1(names, "bob");
+			pg.firstTime1();
+			pg.displayHand1(names);	
 			pg.empty();
-			pg.displayHand2(names, "John");
+			pg.firstTime2();
+			pg.displayHand2(names);		
 			pg.shuffleIt();
+			
+			do{
+				if(pg.returnShuff()){
+					shuffle.setDeck();
+					hands1=shuffle.getShuffle1();
+					hands2=shuffle.getShuffle2();
+					getName(hands1,hands2,suits);
+					pg.setShuff(false);
+					pg.displayHand1(names);
+					pg.displayHand2(names);
+				}
+			}while(true);
+			
+			
 
-
-			for (String c:names){
-				System.out.println (c); 
-			}
-			System.out.println (""); 
 			
 			//new pokerGUI(names); 
 	}
