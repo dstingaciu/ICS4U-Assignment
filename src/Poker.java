@@ -12,7 +12,8 @@ public class Poker {
 			hands1 = shuffle.getShuffle1(); 
 			hands2 = shuffle.getShuffle2(); 
 			
-			getName(hands1, hands2, suits); 
+			getName(hands1, hands2, suits);
+			
 			
 			pokerGUI pg=new pokerGUI();
 			pg.firstTime1();
@@ -29,8 +30,10 @@ public class Poker {
 					hands2=shuffle.getShuffle2();
 					getName(hands1,hands2,suits);
 					pg.setShuff(false);
+					Thread.sleep(1000);
 					pg.displayHand1(names);
 					pg.displayHand2(names);
+					pg.removeShuffle();
 				}
 			}while(true);
 			
