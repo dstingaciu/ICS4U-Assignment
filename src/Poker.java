@@ -5,14 +5,19 @@ public class Poker {
 	public static void main (String[] args) throws InterruptedException{
 		
 		Shuffle shuffle = new Shuffle(); 
-		int[] hands1, hands2;
+
+		//int[] hands1, hands2;
 		String[] suits = {"c", "d", "h", "s"}; 
 		
 			shuffle.setDeck();   
-			hands1 = shuffle.getShuffle1(); 
-			hands2 = shuffle.getShuffle2(); 
+			//hands1 = shuffle.getShuffle1(); 
+			//hands2 = shuffle.getShuffle2(); 
+			
+			int[] hands1 = {1,2,3,4,5};
+			int[] hands2 = {10,11,12,13,1};
 			
 			getName(hands1, hands2, suits);
+			
 			
 			
 			pokerGUI pg=new pokerGUI();
@@ -25,6 +30,7 @@ public class Poker {
 			
 			do{
 				if(pg.returnShuff()){
+					pg.removeWinner();
 					shuffle.setDeck();
 					hands1=shuffle.getShuffle1();
 					hands2=shuffle.getShuffle2();
@@ -34,6 +40,13 @@ public class Poker {
 					pg.displayHand1(names);
 					pg.displayHand2(names);
 					pg.removeShuffle();
+					
+				}
+				if(pg.returnCheckWin()){
+					Checker check = new Checker(names,hands1,hands2);
+					String winner=check.tieBreaker(hands1, hands2);
+					pg.setCheckWin(false);
+					pg.setWin(winner);
 				}
 			}while(true);
 			

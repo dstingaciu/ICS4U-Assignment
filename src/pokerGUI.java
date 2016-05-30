@@ -13,6 +13,10 @@ public class pokerGUI {
 	JButton shuffleB,whoWon;
 	int n=1;
 	static String n1,n2;
+	boolean checkwin=false;
+	String win;
+	
+	
 	public boolean shuff=false;
 	
 	public pokerGUI(){
@@ -26,12 +30,13 @@ public class pokerGUI {
 		panel.setBorder(BorderFactory.createEmptyBorder(100,100,100,100));
 		frame.setSize(100,100);
 		shuffling=new JLabel();
+		winner=new JLabel();
 
 		frame.getContentPane().setBackground(Color.darkGray);
 		frame.setContentPane(panel);
 		frame.pack();
 		frame.setVisible(true);
-		frame.setSize(1000, 750);
+		frame.setSize(1280,1024 );
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -99,6 +104,23 @@ public class pokerGUI {
 	public void setShuff(boolean a){
 		shuff=a;
 	}
+	public boolean returnCheckWin(){
+		return checkwin;
+	}
+	public void setCheckWin(boolean win){
+		checkwin=win;
+	}
+	public void setWin(String whoWon){
+		win=whoWon;
+		winner.setText(win);
+		winner.setForeground(Color.white);
+		panel.add(winner);
+		panel.revalidate();
+	}
+	
+	public void removeWinner(){
+		winner.setText("");
+	}
 	
 	public void displayBack(){
 		for(int i=0;i<5;i++){
@@ -128,6 +150,10 @@ public class pokerGUI {
 		pokerGUI pg=new pokerGUI();
 	}
 	
+	public static void winner(){
+		
+	}
+	
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
@@ -146,11 +172,7 @@ public class pokerGUI {
 	
 	class won implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			/*if(winner check method){
-			 * display label for player 1 winner
-			 * else
-			 * display label for player 2 winner
-			 */
+			checkwin=true;
 		}
 	}
 }
