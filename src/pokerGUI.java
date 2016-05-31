@@ -15,6 +15,7 @@ public class pokerGUI {
 	static String n1,n2;
 	boolean checkwin=false;
 	String win;
+	int counter1=0,counter2=0;
 	
 	
 	public boolean shuff=false;
@@ -66,13 +67,29 @@ public class pokerGUI {
 		for(int i=0;i<5;i++){
 			hand2[i].setIcon(new ImageIcon(filenames[i+5]));	
 			panel.revalidate();
+			if(counter2!=0){
+				try{
+					Thread.sleep(500);
+				}catch(InterruptedException ex){
+					Thread.currentThread().interrupt();
+				}
+			}
 		}
+		counter2++;
 	}
 	public void displayHand1(String[]filenames){
 		for(int i=0;i<5;i++){			
 			hand1[i].setIcon(new ImageIcon(filenames[i]));
 			panel.revalidate();
+			if(counter1!=0){
+				try{
+					Thread.sleep(500);
+				}catch(InterruptedException ex){
+					Thread.currentThread().interrupt();
+				}
+			}
 		}
+		counter1++;
 	}
 	public void empty(){
 		for(int i=0;i<5;i++){

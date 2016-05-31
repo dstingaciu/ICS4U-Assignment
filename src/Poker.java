@@ -1,23 +1,18 @@
-import java.util.*; 
-
 public class Poker {	
 	static String[] names = new String[10]; 
 	public static void main (String[] args) throws InterruptedException{
 		
 		Shuffle shuffle = new Shuffle(); 
 
-		//int[] hands1, hands2;
+		int[] hands1, hands2;
 		String[] suits = {"c", "d", "h", "s"}; 
 		
 			shuffle.setDeck();   
-			//hands1 = shuffle.getShuffle1(); 
-			//hands2 = shuffle.getShuffle2(); 
+			hands1 = shuffle.getShuffle1(); 
+			hands2 = shuffle.getShuffle2(); 
 			
-			int[] hands1 = {1,2,3,4,5};
-			int[] hands2 = {10,11,12,13,1};
 			
 			getName(hands1, hands2, suits);
-			
 			
 			
 			pokerGUI pg=new pokerGUI();
