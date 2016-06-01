@@ -19,12 +19,10 @@ public class Checker {
 		h1 = hand1;
 		h2 = hand2;
 		sameFour(h1, h2);
-		tieBreaker(h1, h2);
-		getHandNames1(rank1);
-		getHandNames2 (rank2);  
+		tieBreaker(h1, h2);  
 	}
 	
-	public String getHandNames1 (int rank1){
+	public String getHandNames1 (){
 		String handName = "";
 		
 		if (rank1 == 10){
@@ -60,7 +58,7 @@ public class Checker {
 		return (handName); 
 	}
 	
-	public String getHandNames2 (int rank2){
+	public String getHandNames2 (){
 		String handName = "";
 		
 		if (rank2 == 10){

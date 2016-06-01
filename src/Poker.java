@@ -2,6 +2,8 @@ public class Poker {
 	static String[] names = new String[10]; 
 	public static void main (String[] args) throws InterruptedException{
 		
+		String won;
+		
 		Shuffle shuffle = new Shuffle(); 
 
 		int[] hands1, hands2;
@@ -13,7 +15,7 @@ public class Poker {
 			
 			
 			getName(hands1, hands2, suits);
-			
+	
 			
 			pokerGUI pg=new pokerGUI();
 			pg.firstTime1();
@@ -40,8 +42,13 @@ public class Poker {
 				if(pg.returnCheckWin()){
 					Checker check = new Checker(names,hands1,hands2);
 					String winner=check.tieBreaker(hands1, hands2);
+					if(winner.equals("The winner is player #1")){
+					won=check.getHandNames1();
+					}else{
+						won=check.getHandNames2();
+					}
 					pg.setCheckWin(false);
-					pg.setWin(winner);
+					pg.setWin(winner,won);
 				}
 			}while(true);
 			

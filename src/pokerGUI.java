@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class pokerGUI {
 	JFrame frame;
 	JPanel panel;
-	JLabel name1,name2,winner,backcard,shuffling;
+	JLabel name1,name2,winner,backcard,shuffling,howWon;
 	JLabel[] hand1=new JLabel[5];
 	JLabel[] hand2=new JLabel[5];
 	JButton shuffleB,whoWon;
@@ -32,7 +32,9 @@ public class pokerGUI {
 		frame.setSize(100,100);
 		shuffling=new JLabel();
 		winner=new JLabel();
-
+		howWon=new JLabel();
+		
+		
 		frame.getContentPane().setBackground(Color.darkGray);
 		frame.setContentPane(panel);
 		frame.pack();
@@ -67,12 +69,10 @@ public class pokerGUI {
 		for(int i=0;i<5;i++){
 			hand2[i].setIcon(new ImageIcon(filenames[i+5]));	
 			panel.revalidate();
-			if(counter2!=0){
 				try{
-					Thread.sleep(500);
+					Thread.sleep(275);
 				}catch(InterruptedException ex){
 					Thread.currentThread().interrupt();
-				}
 			}
 		}
 		counter2++;
@@ -81,12 +81,10 @@ public class pokerGUI {
 		for(int i=0;i<5;i++){			
 			hand1[i].setIcon(new ImageIcon(filenames[i]));
 			panel.revalidate();
-			if(counter1!=0){
 				try{
-					Thread.sleep(500);
+					Thread.sleep(275);
 				}catch(InterruptedException ex){
 					Thread.currentThread().interrupt();
-				}
 			}
 		}
 		counter1++;
@@ -110,9 +108,9 @@ public class pokerGUI {
 		whoWon.setBackground(Color.gray);
 		whoWon.setForeground(Color.white);
 		panel.add(whoWon);
+		panel.add(winner);
+		panel.add(howWon);
 		panel.revalidate();
-		whoWon.setSize(250,50);
-		shuffleB.setSize(250,50);
 	}
 	
 	public boolean returnShuff(){
@@ -127,16 +125,21 @@ public class pokerGUI {
 	public void setCheckWin(boolean win){
 		checkwin=win;
 	}
-	public void setWin(String whoWon){
+	public void setWin(String whoWon, String how){
 		win=whoWon;
-		winner.setText(win);
+		howWon.setText("with a "+how);
+		howWon.setForeground(Color.white);
+		winner.setText(win+"  ");
 		winner.setForeground(Color.white);
-		panel.add(winner);
+		
+
 		panel.revalidate();
+		
 	}
 	
 	public void removeWinner(){
 		winner.setText("");
+		howWon.setText("");
 	}
 	
 	public void displayBack(){
@@ -167,9 +170,6 @@ public class pokerGUI {
 		pokerGUI pg=new pokerGUI();
 	}
 	
-	public static void winner(){
-		
-	}
 	
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable(){
