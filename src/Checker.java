@@ -9,8 +9,10 @@ public class Checker {
 	String first = "", second = "";
 
 	public Checker(String[] names, int[] hand1, int[] hand2) {
-		int h1[] = hand2;
-		int h2[] = hand1;
+		rank1 = 0; 
+		rank2 = 0; 
+		int h1[] = hand1;
+		int h2[] = hand2;
 		String[] n = names;
 		checkSuit(n);
 		straightFlush(h1, h2);
@@ -18,7 +20,80 @@ public class Checker {
 		h2 = hand2;
 		sameFour(h1, h2);
 		tieBreaker(h1, h2);
-		System.out.println (rank1 + ", " + rank2); 
+		getHandNames1(rank1);
+		getHandNames2 (rank2);  
+	}
+	
+	public String getHandNames1 (int rank1){
+		String handName = "";
+		
+		if (rank1 == 10){
+			handName = "Royal Flush";
+		}
+		else if (rank1 == 9){
+			handName = "Straight Flush"; 
+		}
+		else if (rank1 == 8){
+			handName = "Four of A kind";
+		}
+		else if (rank1 == 7){
+			handName = "Full house";
+		}
+		else if (rank1 == 6){
+			handName = "Flush";
+		}
+		else if (rank1 == 5){
+			handName = "Straight"; 
+		}
+		else if (rank1 == 4){
+			handName = "Straight";
+		}
+		else if (rank1 == 3){
+			handName = "Two of a kind";
+		}
+		else if (rank1 == 2){
+			handName = "One of a kind";
+		}
+		else if (rank1 == 1){
+			handName = "High card"; 
+		}
+		return (handName); 
+	}
+	
+	public String getHandNames2 (int rank2){
+		String handName = "";
+		
+		if (rank2 == 10){
+			handName = "Royal Flush";
+		}
+		else if (rank2 == 9){
+			handName = "Straight Flush"; 
+		}
+		else if (rank2 == 8){
+			handName = "Four of A kind";
+		}
+		else if (rank2 == 7){
+			handName = "Full house";
+		}
+		else if (rank2 == 6){
+			handName = "Flush";
+		}
+		else if (rank2 == 5){
+			handName = "Straight"; 
+		}
+		else if (rank2 == 4){
+			handName = "Straight";
+		}
+		else if (rank2 == 3){
+			handName = "Two of a kind";
+		}
+		else if (rank2 == 2){
+			handName = "One of a kind";
+		}
+		else if (rank2 == 1){
+			handName = "High card"; 
+		}
+		return (handName); 
 	}
 
 	public void checkSuit(String[] n) {
@@ -42,10 +117,10 @@ public class Checker {
 		Arrays.sort(h1);
 		Arrays.sort(h2);
 		for (int n = 0; n < 5; n++) {
-			if (h1[n] % 13 == 1 && h1[1] != 2) {
+			if (h1[n] % 13 == 1 && h1[1] != 2 && h1[n] != h1[4]) {
 				h1[n] = ((((h1[n] - 1) / 13) + 1) * 13) + 1;
-			}
-			if (h2[n] % 13 == 1 && h2[1] != 2) {
+			} 
+			if (h2[n] % 13 == 1 && h2[1] != 2 && h2[n] != h2[4]) {
 				h2[n] = ((((h2[n] - 1) / 13) + 1) * 13) + 1;
 			}
 		}
@@ -61,7 +136,8 @@ public class Checker {
 		}
 		if (h1[0] % 13 == 10 && ss1 == true && or1 == true) {
 			rank1 = 10;
-		} else if (h1[0] % 13 > 0 && h1[0] % 13 < 10 && ss1 == true && or1 == true) {
+		} else if (h1[0] % 13 > 0 && h1[0] % 13 < 14 && ss1 == true
+				&& or1 == true) {
 			rank1 = 9;
 		}
 		if (or1 == true && rank1 == 0) {
@@ -80,7 +156,8 @@ public class Checker {
 		}
 		if (h2[0] % 13 == 10 && ss2 == true && or2 == true) {
 			rank2 = 10;
-		} else if (h2[0] % 13 > 0 && h2[0] % 13 < 10 && ss2 == true && or2 == true) {
+		} else if (h2[0] % 13 > 0 && h2[0] % 13 < 14 && ss2 == true
+				&& or2 == true) {
 			rank2 = 9;
 		}
 		if (or2 == true && rank2 == 0) {
@@ -177,38 +254,33 @@ public class Checker {
 		int[] y1 = new int[3];
 		int[] y2 = new int[3];
 		String winner = "";
-		
+
 		for (int n = 0; n < 5; n++) {
-			if (h1[n] % 13 == 1 && h1[1] != 2 ) {
-				h1[n] = ((((h1[n] - 1) / 13) + 1) * 13) + 1;
+			if (temp[n] == 1) {
+				temp[n] = 14;
 			}
-			if (h2[n] % 13 == 1 && h2[1] != 2) {
-				h2[n] = ((((h2[n] - 1) / 13) + 1) * 13) + 1;
-			}
-			if (temp[n] == 1){
-				temp[n] = 14; 
-			}
-			if (temp2[n] == 1){
-				temp2[n] = 14; 
+			if (temp2[n] == 1) {
+				temp2[n] = 14;
 			}
 		}
-		
-		Arrays.sort(h1);
-		Arrays.sort(h2);
 		Arrays.sort(temp);
 		Arrays.sort(temp2);
 		
+		if (rank1 == 10 && rank2 == 10) {
+			winner = "Both players are tied!";
+		}
+
 		if (rank1 > rank2) {
 			winner = "The winner is player #1";
 		} else if (rank1 < rank2) {
 			winner = "The winner is player #2";
 		} else if (rank1 == rank2) {
 			if (rank1 == 9 || rank1 == 5 || rank1 == 6) {
-				if (h1[4] > h2[4]) {
+				if (temp[4] > temp2[4]) {
 					winner = "The winner is player #1";
-				} else if (h1[4] < h2[4]) {
+				} else if (temp[4] < temp2[4]) {
 					winner = "The winner is player #2";
-				} else if (h1[4] == h2[4]) {
+				} else if (temp[4] == temp2[4]) {
 					winner = "Both players are tied!";
 				}
 			}
@@ -450,31 +522,31 @@ public class Checker {
 			}
 
 			else if (rank1 == 1) {
-				Arrays.sort(h1);
-				Arrays.sort(h2);
-				if (h1[4] > h2[4]) {
+				Arrays.sort(temp);
+				Arrays.sort(temp2);
+				if (temp[4] > temp2[4]) {
 					winner = "The winner is player #1";
-				} else if (h1[4] < h2[4]) {
+				} else if (temp[4] < temp2[4]) {
 					winner = "The winner is player #2";
 				} else {
-					if (h1[3] > h2[3]) {
+					if (temp[3] > temp2[3]) {
 						winner = "The winner is player #1";
-					} else if (h1[3] < h2[3]) {
+					} else if (temp[3] < temp2[3]) {
 						winner = "The winner is player #2";
 					} else {
-						if (h1[2] > h2[2]) {
+						if (temp[2] > temp2[2]) {
 							winner = "The winner is player #1";
-						} else if (h1[2] < h2[2]) {
+						} else if (temp[2] < temp2[2]) {
 							winner = "The winner is player #2";
 						} else {
-							if (h1[1] > h2[1]) {
+							if (temp[1] > temp2[1]) {
 								winner = "The winner is player #1";
-							} else if (h1[1] < h2[1]) {
+							} else if (temp[1] < temp2[1]) {
 								winner = "The winner is player #2";
 							} else {
-								if (h1[0] > h2[0]) {
+								if (temp[0] > temp2[0]) {
 									winner = "The winner is player #1";
-								} else if (h1[0] < h2[0]) {
+								} else if (temp[0] < temp2[0]) {
 									winner = "The winner is player #2";
 								} else {
 									winner = "Both players are tied!";
