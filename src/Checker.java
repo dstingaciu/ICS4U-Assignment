@@ -44,7 +44,7 @@ public class Checker {
 			handName = "Straight"; 
 		}
 		else if (rank1 == 4){
-			handName = "Straight";
+			handName = "Three of a Kind";
 		}
 		else if (rank1 == 3){
 			handName = "Two of a kind";
@@ -80,7 +80,7 @@ public class Checker {
 			handName = "Straight"; 
 		}
 		else if (rank2 == 4){
-			handName = "Straight";
+			handName = "Three of a kind";
 		}
 		else if (rank2 == 3){
 			handName = "Two of a kind";

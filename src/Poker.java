@@ -54,8 +54,7 @@ public class Poker {
 			
 			
 
-			
-			//new pokerGUI(names); 
+			 
 	}
 	
 	public static void getName(int[] hands1, int[] hands2, String[] suits){
