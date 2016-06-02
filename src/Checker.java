@@ -22,6 +22,11 @@ public class Checker {
 		tieBreaker(h1, h2);  
 	}
 	
+	/*
+	 * Returns type of win it was based on the rank that hand got for 1st hand
+	 * pre: none
+	 * post: returns handName based on ranks
+	 */
 	public String getHandNames1 (){
 		String handName = "";
 		
@@ -47,17 +52,21 @@ public class Checker {
 			handName = "Three of a Kind";
 		}
 		else if (rank1 == 3){
-			handName = "Two of a kind";
+			handName = "Two pair";
 		}
 		else if (rank1 == 2){
-			handName = "One of a kind";
+			handName = "Pair";
 		}
 		else if (rank1 == 1){
 			handName = "High card"; 
 		}
 		return (handName); 
 	}
-	
+	/*
+	 * Returns type of win it was based on the rank that hand got for 2nd hand
+	 * pre: none
+	 * post: returns handName based on ranks
+	 */
 	public String getHandNames2 (){
 		String handName = "";
 		
@@ -83,10 +92,10 @@ public class Checker {
 			handName = "Three of a kind";
 		}
 		else if (rank2 == 3){
-			handName = "Two of a kind";
+			handName = "Two pair";
 		}
 		else if (rank2 == 2){
-			handName = "One of a kind";
+			handName = "One pair";
 		}
 		else if (rank2 == 1){
 			handName = "High card"; 
@@ -94,6 +103,11 @@ public class Checker {
 		return (handName); 
 	}
 
+		/*
+		 * Checks the suit of the card to see if the cards in the hand all have the same suit
+		 * pre: none
+		 * post: sets boolean variable true or false
+		 */
 	public void checkSuit(String[] n) {
 		for (int i = 0; i < 5; i++) {
 			first = first + (n[i].substring(0, 1));
@@ -109,6 +123,12 @@ public class Checker {
 			ss2 = true;
 		}
 	}
+	
+	/*
+	 * Checks for Flushes and Straight
+	 * pre: none
+	 * post: If it is a flush or straight it sets rank to appropriate number
+	 */
 
 	public void straightFlush(int h1[], int h2[]) {
 		int counter = 0;
@@ -166,6 +186,11 @@ public class Checker {
 		}
 	}
 
+	/*
+	 *Chceks for every type of hand except flushes and straights
+	 *pre: none
+	 *post: Sets rank to appropriate type of hand
+	 */
 	public void sameFour(int[] h1, int[] h2) {
 		int counter = 0;
 		for (int n = 0; n < 5; n++) {
@@ -246,7 +271,12 @@ public class Checker {
 			rank2 = 1;
 		}
 	}
-
+	
+	/*
+	 * Checks if the hands are tied and returns string based on who won 
+	 * pre: none
+	 * post: returns string for which player won
+	 */
 	public String tieBreaker(int[] h1, int[] h2) {
 		int t1 = 0, t2 = 0, x1 = 0, x2 = 0, counter = 0;
 		int[] y1 = new int[3];

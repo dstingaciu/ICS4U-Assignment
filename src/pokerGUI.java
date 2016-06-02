@@ -44,6 +44,12 @@ public class pokerGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	/*
+	 * First time operation of adding elements to the panel for the first hand
+	 * pre:none
+	 * post:adds hand 1 and the string player 1
+	 */
+	
 	public void firstTime1(){
 		name1=new JLabel("Player 1");
 		name1.setForeground(Color.white);
@@ -53,6 +59,12 @@ public class pokerGUI {
 		panel.add(hand1[i]);
 		}
 	}
+	
+	/*
+	 * First time operation of adding elements to the panel for the second hand
+	 * pre:none
+	 * post: Adds hand 2 and the string player 2
+	 */
 	public void firstTime2(){
 		name2=new JLabel("Player 2");
 		name2.setForeground(Color.white);
@@ -64,7 +76,10 @@ public class pokerGUI {
 	}
 	
 
-	//Output cards based on file names array
+	/* Displays cards based on file names array for first hand
+	 * pre:Elements on content panel must be set
+	 * post: displays correct card picture
+	 */
 	public void displayHand2(String []filenames){
 		for(int i=0;i<5;i++){
 			hand2[i].setIcon(new ImageIcon(filenames[i+5]));	
@@ -77,6 +92,10 @@ public class pokerGUI {
 		}
 		counter2++;
 	}
+	/* Displays cards based on file names array for second hand
+	 * pre:Elements on content panel must be set
+	 * post: displays correct card picture
+	 */	
 	public void displayHand1(String[]filenames){
 		for(int i=0;i<5;i++){			
 			hand1[i].setIcon(new ImageIcon(filenames[i]));
@@ -89,6 +108,12 @@ public class pokerGUI {
 		}
 		counter1++;
 	}
+	
+	/*
+	 * Displays back of one card in between hands
+	 * pre:none
+	 * post: displays card back
+	 */
 	public void empty(){
 		for(int i=0;i<5;i++){
 		panel.add(new JLabel());
@@ -97,6 +122,11 @@ public class pokerGUI {
 		panel.revalidate();
 	}
 	
+	/*
+	 * Adds shuffle and who won button elements to content panel
+	 * pre: none
+	 * post: displays shuffle and who won buttons
+	 */
 	public void shuffleIt(){
 		shuffleB=new JButton("Re-Shuffle");		
 		shuffleB.addActionListener(new shuffle());
@@ -113,35 +143,68 @@ public class pokerGUI {
 		panel.revalidate();
 	}
 	
+	/*
+	 * Returns the state of shuff variable
+	 * pre: shuff must be initialized
+	 * post: none
+	 */
 	public boolean returnShuff(){
 		return shuff;
 	}
+	/*
+	 * Changes the state of shuff variable
+	 * pre: none
+	 * post: State of shuff changed
+	 */
 	public void setShuff(boolean a){
 		shuff=a;
 	}
+	/*
+	 * Returns the state of checkwin variable
+	 * pre: checkwin must be initialized
+	 * post: none
+	 */
 	public boolean returnCheckWin(){
 		return checkwin;
 	}
+	/*
+	 * Changes the state of checkwin variable
+	 * pre: none
+	 * post: State of checkwin is changed
+	 */
 	public void setCheckWin(boolean win){
 		checkwin=win;
 	}
+	
+	/*
+	 * Displays which player won and how the player won
+	 * pre: how won and winner labels must be initialized
+	 * post: Displays winner and how they won
+	 */
 	public void setWin(String whoWon, String how){
 		win=whoWon;
 		howWon.setText("with a "+how);
 		howWon.setForeground(Color.white);
 		winner.setText(win+"  ");
 		winner.setForeground(Color.white);
-		
-
 		panel.revalidate();
-		
 	}
 	
+	/*
+	 * Removes winner elements
+	 * pre: none
+	 * post: winner and howWon labels are removed
+	 */
 	public void removeWinner(){
 		winner.setText("");
 		howWon.setText("");
 	}
 	
+	/*
+	 * Displays the back of the cards for each hand
+	 * pre: none
+	 * post: displays card backs
+	 */
 	public void displayBack(){
 		for(int i=0;i<5;i++){
 			hand1[i].setIcon(new ImageIcon("redback.png"));
@@ -153,33 +216,28 @@ public class pokerGUI {
 		panel.revalidate();
 	}
 	
+	/*
+	 * Displays string that says its shuffling
+	 * pre: shuffling must be initialized 
+	 * post: displays label thats says shuffling
+	 */
 	public void shufflingCards(){
 		shuffling.setText("Shuffling!");
 		shuffling.setForeground(Color.white);
 		panel.add(shuffling);
 	}
 	
-	
+	/*
+	 * Removes shuffling
+	 * pre: shuffling must be initialized
+	 * post: removes shuffling 
+	 */
 	public void removeShuffle(){
 		shuffling.setText("");
 		panel.revalidate();
 	}
 	
-	public static void runGUI(){
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		pokerGUI pg=new pokerGUI();
-	}
-	
-	
-	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable(){
-			public void run(){
-				runGUI();
-			}
-		});
-
-	}
-	
+	//goes into correct methods for pressing shuffle buttons
 	class shuffle implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			shufflingCards();
@@ -187,6 +245,7 @@ public class pokerGUI {
 		}
 	}
 	
+	//Changes state of checkwin to true when action performed is pressed
 	class won implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			checkwin=true;

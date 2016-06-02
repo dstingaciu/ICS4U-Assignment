@@ -5,7 +5,7 @@ public class Poker {
 		String won;
 		
 		Shuffle shuffle = new Shuffle(); 
-
+		
 		int[] hands1, hands2;
 		String[] suits = {"c", "d", "h", "s"}; 
 		
@@ -13,10 +13,10 @@ public class Poker {
 			hands1 = shuffle.getShuffle1(); 
 			hands2 = shuffle.getShuffle2(); 
 			
-			
+			//Get the name of the picture file
 			getName(hands1, hands2, suits);
 	
-			
+			//First time operations to display GUI elements
 			pokerGUI pg=new pokerGUI();
 			pg.firstTime1();
 			pg.displayHand1(names);	
@@ -26,6 +26,7 @@ public class Poker {
 			pg.shuffleIt();
 			
 			do{
+				//Continually checks if the user presses the shuffle button and when they do reset hands
 				if(pg.returnShuff()){
 					pg.removeWinner();
 					shuffle.setDeck();
@@ -33,12 +34,13 @@ public class Poker {
 					hands2=shuffle.getShuffle2();
 					getName(hands1,hands2,suits);
 					pg.setShuff(false);
-					Thread.sleep(1000);
+					Thread.sleep(1000); //Makes it seem like the cards are being shuffled
 					pg.displayHand1(names);
 					pg.displayHand2(names);
 					pg.removeShuffle();
 					
 				}
+				//Continually checks if the user presses the who won button and then displays the winner when they do
 				if(pg.returnCheckWin()){
 					Checker check = new Checker(names,hands1,hands2);
 					String winner=check.tieBreaker(hands1, hands2);
@@ -57,6 +59,11 @@ public class Poker {
 			 
 	}
 	
+	/*
+	 * Returns the name of the pictures and stores them in an array for later use
+	 * pre:none
+	 * post: Name of picture files based on cards in hand is stored in array
+	 */
 	public static void getName(int[] hands1, int[] hands2, String[] suits){
 		int temp; 
 		for (int n = 0; n < 5; n++){
